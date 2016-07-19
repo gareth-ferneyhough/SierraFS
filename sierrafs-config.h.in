@@ -1,0 +1,3 @@
+#define SierraFS_VERSION_MAJOR @SierraFS_VERSION_MAJOR@
+#define SierraFS_VERSION_MINOR @SierraFS_VERSION_MINOR@
+#cmakedefine USE_MYMATH
