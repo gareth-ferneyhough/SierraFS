@@ -1,11 +1,11 @@
 #ifndef FUSEXX_H_
 #define FUSEXX_H_
 
+#include <sys/stat.h>
 #include <string>
 
-
 /** Handle for a FUSE filesystem */
-struct fuse;
+//struct fuse;
 
 /**
  * Readdir flags, passed to ->readdir()
@@ -37,19 +37,19 @@ enum fuse_fill_dir_flags {
 
 
 typedef int (*fuse_fill_dir_t) (void *buf, const char *name,
-				const struct stat *stbuf, off_t off,
-				enum fuse_fill_dir_flags flags);
-
-struct stat;
+				const struct stat* stbuf, off_t off,
+				fuse_fill_dir_flags flags);
 
 namespace fusexx {
 
 class SimpleFuse {
-    virtual int GetAttr(std::string path, stat *stbuf);
+    public:
+    virtual void start();
+    virtual int GetAttr(std::string path, struct stat *stbuf);
     virtual int Access(std::string path, int mask);
     virtual int ReadLink(std::string path, char *buf, size_t size);
     virtual int ReadDir(std::string path, void* buf, fuse_fill_dir_t filler,
-                       off_t offset, struct fuse_file    
+                       off_t offset, struct fuse_file_info* fi,
                        enum fuse_readdir_flags flags);
     virtual int Mknod(std::string path, mode_t mode, dev_t rdev);
     virtual int Mkdir(std::string path, mode_t mode);
@@ -65,7 +65,7 @@ class SimpleFuse {
     //virtual int Open(std::string path, struct fuse_file_info *fi);
     virtual int Read(std::string path, 
                     struct fuse_file_info *fi);
-    virtual int Write(std::string path, std::string bu
+    virtual int Write(std::string path, const char* buffer,
                      off_t offset, struct fuse_file_info *fi);
     virtual int Statfs(std::string path, struct statvfs *stbuf);
     //virtual int Release(std::string path, struct fuse_file_info *fi);
