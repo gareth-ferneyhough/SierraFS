@@ -31,8 +31,11 @@ set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set (CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-add_executable (sierrafs sierrafs.c)	
-target_link_libraries (sierrafs ${EXTRA_LIBS})
+add_library (fuse++ fuse++.cc)
+add_library (myfuse++ my-fuse++-fs.cc)
+add_executable (sierrafs main.cc)	
+target_link_libraries (sierrafs fuse++ myfuse++ ${EXTRA_LIBS})
+set (CMAKE_CXX_FLAGS "-fpermissive")
 
 install (TARGETS sierrafs DESTINATION bin)
 install (FILES "${PROJECT_BINARY_DIR}/sierrafs-config.h"
