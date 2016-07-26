@@ -44,7 +44,7 @@ namespace fusexx {
 
 class SimpleFuse {
     public:
-    virtual void start();
+    virtual void Start();
     virtual int GetAttr(std::string path, struct stat *stbuf);
     virtual int Access(std::string path, int mask);
     virtual int ReadLink(std::string path, char *buf, size_t size);

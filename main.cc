@@ -2,6 +2,6 @@
 
 int main(int argc, const char** argv){
     MyFusexxFs fs;
-    fs.start();
+    fs.Start();
     return 0;
 }
