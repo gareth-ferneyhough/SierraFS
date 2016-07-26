@@ -2,6 +2,5 @@
 
 int main(int argc, const char** argv){
     MyFusexxFs fs;
-    fs.Start();
-    return 0;
+    return fs.Start(argc, argv);
 }
