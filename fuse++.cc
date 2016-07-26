@@ -8,7 +8,7 @@
 
 static fusexx::SimpleFuse* instance = NULL;
 int _getattr(const char *path, struct stat *stbuf) {
-    std::cout << "_getattr" << std::endl;
+    std::cout << "yo_getattr" << std::endl;
 	int res;
 
 	res = lstat(path, stbuf);
