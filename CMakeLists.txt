@@ -42,7 +42,6 @@ install (FILES "${PROJECT_BINARY_DIR}/sierrafs-config.h"
          DESTINATION include)
 
 file (COPY postbuild.py DESTINATION bin)
-add_custom_command(TARGET sierrafs
-    POST_BUILD
+add_custom_target (run
     COMMAND python bin/postbuild.py
     )

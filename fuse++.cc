@@ -1,25 +1,16 @@
 #define FUSE_USE_VERSION 30
 
 #include <iostream>
-#include <errno.h>
-#include <unistd.h>
 #include "fuse.h" 
 #include "fuse++.h"
 
 static fusexx::SimpleFuse* instance = NULL;
 int _getattr(const char *path, struct stat *stbuf) {
-    std::cout << "yo_getattr" << std::endl;
-	int res;
-
-	res = lstat(path, stbuf);
-	if (res == -1)
-		return -errno;
-
-	return 0;
-    //return instance->GetAttr(std::string(path), stbuf); 
+    return instance->GetAttr(std::string(path), stbuf); 
 }
 
 namespace fusexx {
+
 int SimpleFuse::Start(int argc, const char** argv) {
     std::cout << "SimpleFuse::Start" << std::endl;
     instance = this;
@@ -32,13 +23,6 @@ int SimpleFuse::Start(int argc, const char** argv) {
 
 int SimpleFuse::GetAttr(std::string path, struct stat *stbuf) {
     std::cout << "SimpleFuse::GetAttr" << std::endl;
-	int res;
-
-	res = lstat(path.c_str(), stbuf);
-	if (res == -1)
-		return -errno;
-
-	return 0;
 }
 
 int SimpleFuse::Access(std::string path, int mask) {

@@ -4,15 +4,6 @@
 #include <sys/stat.h>
 #include <string>
 
-//enum fuse_readdir_flags;
-
-//enum fuse_fill_dir_flags;
-
-
-//typedef int (*fuse_fill_dir_t) (void *buf, const char *name,
-//				const struct stat* stbuf, off_t off,
-//				fuse_fill_dir_flags flags);
-
 struct fuse_file_info;
 namespace fusexx {
 
