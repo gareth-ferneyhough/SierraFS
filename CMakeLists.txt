@@ -8,24 +8,8 @@ configure_file (
     "${PROJECT_BINARY_DIR}/sierrafs-config.h"
     )
 
-include_directories ("${PROJECT_BINARY_DIR}/src")
-#set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
-
-#find_package (FUSE 3.0 REQUIRED)
-#
-#if (NOT FUSE_FOUND)
-#    message ( FATAL_ERROR "Fuse3 is required")
-#endif()
-#
-#add_definitions(${FUSE_DEFINITIONS})
-#include_directories(${FUSE_INCLUDE_DIRS})
-#set (EXTRA_LIBS ${EXTRA_LIBS} ${FUSE_LIBRARIES})
-
-#set (FUSE_INCLUDE_DIR "/usr/local/include/fuse3")
-#set (FUSE_LIB_DIR "/usr/local/lib")
-#set (FUSE_LIBS "fuse3")
-#include_directories (${FUSE_INCLUDE_DIR})
-#set (EXTRA_LIBS ${EXTRA_LIBS} ${FUSE_LIBS})
+#install (FILES "${PROJECT_BINARY_DIR}/sierrafs-config.h"
+#         DESTINATION include)
 
 set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set (CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
