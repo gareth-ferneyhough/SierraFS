@@ -1,0 +1,7 @@
+set (FUSE_INCLUDE_DIR "/usr/local/include/fuse3")
+set (FUSE_LIB_DIR "/usr/local/lib")
+set (FUSE_LIBS "fuse3")
+include_directories (${FUSE_INCLUDE_DIR})
+set (EXTRA_LIBS ${FUSE_LIBS})
+add_library (fuse++ fuse++.cc)
+set (CMAKE_CXX_FLAGS "-fpermissive")

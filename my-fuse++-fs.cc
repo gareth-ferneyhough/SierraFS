@@ -2,25 +2,24 @@
 #include <string>
 #include <errno.h>
 #include <unistd.h>
-#include "my-fuse++-fs.h"
+#include "fuse++.h"
 
-using std::string;
+class MyFusexxFs : public fusexx::SimpleFuse {
+public:
+    int GetAttr(std::string path, struct stat* stbuf) {
+        std::cout << "MyFusexxFs:GetAttr: " << path << std::endl;
+        int res;
 
-MyFusexxFs::MyFusexxFs() {
+        res = lstat(path.c_str(), stbuf);
+        std::cout << "result: " << res << std::endl;
+        if (res == -1)
+            return -errno;
+
+        return 0;
+    }
+};
+
+int main(int argc, const char** argv){
+    MyFusexxFs fs;
+    return fs.Start(argc, argv);
 }
-
-MyFusexxFs::~MyFusexxFs() {
-}
-
-int MyFusexxFs::GetAttr(string path, struct stat* stbuf) {
-    std::cout << "MyFusexxFs:GetAttr: " << path << std::endl;
-	int res;
-
-	res = lstat(path.c_str(), stbuf);
-    std::cout << "result: " << res << std::endl;
-	if (res == -1)
-		return -errno;
-
-	return 0;
-}
-
