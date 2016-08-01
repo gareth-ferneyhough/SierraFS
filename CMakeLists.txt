@@ -17,3 +17,21 @@ set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 add_subdirectory(src)
 add_subdirectory(examples)
+
+################################
+# GTest
+################################
+ADD_SUBDIRECTORY (dependencies/googletest-release-1.7.0)
+enable_testing()
+include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
+
+################################
+# Unit Tests
+################################
+set (TEST_DIR ${CMAKE_SOURCE_DIR}/test/)
+file (GLOB TEST_FILES ${TEST_DIR}/*.cc)
+add_executable (runUnitTests ${TEST_FILES})
+
+# Link test executable against gtest & gtest_main
+target_link_libraries (runUnitTests gtest gtest_main)
+add_test (runUnitTests ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/runUnitTests --gtest_color=yes)
