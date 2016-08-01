@@ -35,3 +35,9 @@ add_executable (runUnitTests ${TEST_FILES})
 # Link test executable against gtest & gtest_main
 target_link_libraries (runUnitTests gtest gtest_main)
 add_test (runUnitTests ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/runUnitTests --gtest_color=yes)
+
+# Integration tests
+file (COPY ${TEST_DIR}/example_simple_test.py DESTINATION test)
+add_custom_target (integration-test
+    COMMAND py.test "${PROJECT_BINARY_DIR}/test/example_simple_test.py"
+    )
