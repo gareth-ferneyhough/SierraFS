@@ -10,6 +10,6 @@ add_test (runUnitTests ${CMAKE_CURRENT_BINARY_DIR}/runUnitTests --gtest_color=ye
 
 # Integration tests
 file (COPY ${CMAKE_CURRENT_SOURCE_DIR}/example_simple_test.py DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-add_custom_target (integration-test
+add_custom_target (test-integration
     COMMAND py.test "${PROJECT_BINARY_DIR}/test/example_simple_test.py"
     )
